@@ -24,11 +24,30 @@ const counterSlice = createSlice({
   },
 });
 
+const initialAuthState = {
+  isAuthenticate: false,
+};
+
+const AuthSlice = createSlice({
+  name: "Authentication",
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticate = true;
+    },
+    logOut(state) {
+      state.isAuthenticate = false;
+    },
+  },
+});
+
 const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
+    auth: AuthSlice.reducer,
   },
 });
 
 export const counterActions = counterSlice.actions;
+export const AuthAction = AuthSlice.actions;
 export default store;
